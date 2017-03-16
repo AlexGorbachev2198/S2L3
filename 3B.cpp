@@ -26,7 +26,6 @@ public:
 class Triangle
 {
 	Point p1, p2, p3;
-	double P;
 public:
 	Triangle(Point p1, Point p2, Point p3)
 	{
@@ -34,7 +33,7 @@ public:
 		this->p2 = p2;
 		this->p3 = p3;
 	}
-	void Print()
+	virtual void Print()
 	{
 		cout << "x1 = " << p1.Get_X() << ", y1 = " << p1.Get_Y() << endl;
 		cout << "x2 = " << p2.Get_X() << ", y2 = " << p2.Get_Y() << endl;
@@ -46,7 +45,7 @@ class Rectangle: public Triangle
 	Point p4;
 public:
 	Rectangle(Point p1, Point p2, Point p3, Point p4):
-		Triangle(p1,p2,p3)
+	Triangle(p1,p2,p3)
 	{
 		this->p4 = p4;
 	}
@@ -64,10 +63,13 @@ int main()
 	Point p4(7, 8);
 	Triangle T(p1, p2, p3);
 	Rectangle R(p1, p2, p3, p4);
+	Triangle *buf;
 	cout << "Triangle:" << endl;
-	T.Print();
+	buf = &T;
+	buf->Print();
 	cout << "Rectangle:" << endl;
-	R.Print();
+	buf = &R;
+	buf->Print();
 	system("pause"); 
 	return 0;
 }
