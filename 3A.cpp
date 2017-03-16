@@ -26,8 +26,7 @@ public:
 	}
 	void Print()
 	{
-		cout << "\n";
-		for (int i = 0; i<Length; i++) cout << Array[i] << " ";
+		for (unsigned int i = 0; i<Length; ++i) cout << Array[i] << " ";
 	}
 	double& operator[](unsigned int i)
 	{
@@ -49,15 +48,20 @@ double* & operator+(double *x, Buffer& v2)
 }
 int main()
 {
-	double *m1 = new double[5];
-	for (unsigned int i = 0; i < 5; ++i) m1[i] = i + 1;
-	Buffer V1(m1, 5);
-	V1.Print();
-	cout << "\n";
-	for (int i = 0; i<5; i++)
+	double *m1;
+	unsigned int n;
+	cout << "Input array lenght" << endl;
+	cin >> n;
+	m1 = new double[n];
+	cout << "Input array" << endl;
+	for (unsigned int i = 0; i < n; ++i) cin >> m1[i];
+	Buffer V1(m1, n);
+	cout << "Array:" << endl;
+	for (int i = 0; i<n; i++)
 		cout << V1[i] << " ";
-	Buffer V3(m1+V1,5);
+	Buffer V3(m1+V1,n);
 	Buffer V2 = V3;
+	cout << "\nResult:" << endl;
 	V2.Print();
 	system("pause");
 	return 0;
